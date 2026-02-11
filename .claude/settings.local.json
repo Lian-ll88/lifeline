@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --src-dir --import-alias \"@/*\" --yes)",
+      "Bash(xcopy /E /Y /I \"lifeline-temp\\\\*\" \"CC\"\" 2>&1 && xcopy /E /Y /H /I \"lifeline-temp.*\" \"CC\"\")",
+      "Bash(robocopy:*)",
+      "Bash($true)",
+      "Bash(cmd /c \"robocopy D:\\\\A2A\\\\lifeline-temp D:\\\\A2A\\\\CC /E /XD .secondme\")",
+      "WebFetch(domain:develop-docs.second.me)",
+      "Bash(npm install:*)",
+      "Bash(npx next build:*)",
+      "Bash(npx next dev)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(curl:*)",
+      "Bash(start:*)",
+      "Bash(node test-chat.mjs:*)",
+      "Bash(taskkill:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(del \"D:\\\\A2A\\\\lifeline\\\\test-chat.mjs\")",
+      "Bash(dir:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)"
+    ]
+  }
+}

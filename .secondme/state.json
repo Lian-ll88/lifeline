@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "stage": "prd",
+  "app_name": "lifeline",
+  "modules": ["auth", "profile", "chat"],
+  "config": {
+    "client_id": "4d6c1857-58d4-47eb-b7a6-ba16bf9d2390",
+    "client_secret": "d66023811bf9e142465159efc25661e925ccae2f9bf7c61fdadbce8f09d3aa3a",
+    "redirect_uri": "http://localhost:3000/api/auth/callback",
+    "redirect_uris": [
+      "http://localhost:3000/api/auth/callback"
+    ],
+    "database_url": "file:./dev.db",
+    "allowed_scopes": ["user.info", "user.info.shades", "chat"]
+  },
+  "api": {
+    "base_url": "https://app.mindos.com/gate/lab",
+    "oauth_url": "https://go.second.me/oauth/",
+    "token_endpoint": "https://app.mindos.com/gate/lab/api/oauth/token",
+    "access_token_ttl": 7200,
+    "refresh_token_ttl": 2592000
+  },
+  "docs": {
+    "quickstart": "https://develop-docs.second.me/zh/docs",
+    "oauth2": "https://develop-docs.second.me/zh/docs/authentication/oauth2",
+    "api_reference": "https://develop-docs.second.me/zh/docs/api-reference/secondme",
+    "errors": "https://develop-docs.second.me/zh/docs/errors"
+  },
+  "prd": {
+    "summary": "LifeLine (生命线) - AI互助应急救援网络。用户在紧急情况下一键SOS求救，AI召集全球救援AI网络，提供跨语言、跨时区、跨专业的即时帮助。",
+    "features": [
+      "OAuth登录 + 紧急档案创建（基于Profile自动获取用户信息）",
+      "一键SOS求救，触发与SecondMe AI的紧急对话",
+      "流式显示救援进度（定位医院、联系翻译、通知家人等）",
+      "多轮会话列表，保留历史救援记录",
+      "个人信息侧边栏/抽屉快速访问",
+      "紧急档案管理（医疗信息、紧急联系人、语言能力）"
+    ],
+    "target_users": "经常出差/旅行的商务人士、留学生、海外工作者、独居老人、慢性病患者",
+    "design_preference": "简约现代"
+  }
+}
