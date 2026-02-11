@@ -1,7 +1,7 @@
 const BASE_URL = "https://app.mindos.com/gate/lab";
 const CLIENT_ID = "4d6c1857-58d4-47eb-b7a6-ba16bf9d2390";
 const CLIENT_SECRET = "d66023811bf9e142465159efc25661e925ccae2f9bf7c61fdadbce8f09d3aa3a";
-const REDIRECT_URI = "http://localhost:3000/api/auth/callback";
+const REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/api/auth/callback`;
 const OAUTH_URL = "https://go.second.me/oauth/";
 
 export function getAuthUrl(state: string): string {
