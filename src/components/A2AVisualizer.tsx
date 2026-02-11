@@ -271,7 +271,7 @@ export default function A2AVisualizer({ onComplete, initialInput }: {
         </div>
         <div>
           <h3 className="text-xl font-bold">AI 正在生成救援方案...</h3>
-          <p className="text-sm text-muted-foreground mt-2">分析您的情况 &quot;{initialInput}&quot; 并连接相关节点</p>
+          <p className="text-sm text-zinc-500 mt-2">分析您的情况 &quot;{initialInput}&quot; 并连接相关节点</p>
         </div>
       </div>
     );
@@ -280,7 +280,7 @@ export default function A2AVisualizer({ onComplete, initialInput }: {
   return (
     <div className="flex flex-col h-full">
       {/* Network Visualization Area */}
-      <div className="relative h-64 w-full bg-zinc-900 rounded-b-3xl overflow-hidden shadow-inner flex-shrink-0">
+      <div className="relative h-64 w-full bg-black/40 rounded-b-3xl overflow-hidden shadow-inner flex-shrink-0 border-b border-white/[0.06]">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20"></div>
 
         {/* Central Pulse */}
@@ -334,25 +334,25 @@ export default function A2AVisualizer({ onComplete, initialInput }: {
       </div>
 
       {/* Log Stream */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-50 dark:bg-black">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black/40">
         <div className="text-center py-2">
-           <span className="px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-800 text-xs text-zinc-500">
+           <span className="px-3 py-1 rounded-full bg-zinc-800 text-xs text-zinc-500">
              A2A 协商频道 (加密)
            </span>
         </div>
 
         {events.map((event) => (
-          <div key={event.id} className={`flex ${event.source === "me" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2`}>
+          <div key={event.id} className={`flex ${event.source === "me" ? "justify-end" : "justify-start"} animate-slide-up`}>
             <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm border ${
-              event.type === "broadcast" ? "bg-red-50 border-red-100 text-red-800 dark:bg-red-900/20 dark:border-red-900 dark:text-red-200 w-full text-center" :
-              event.type === "success" ? "bg-green-50 border-green-100 text-green-800 dark:bg-green-900/20 dark:border-green-900 dark:text-green-200 w-full text-center font-bold" :
+              event.type === "broadcast" ? "bg-rose-500/10 border-rose-500/20 text-rose-300 w-full text-center" :
+              event.type === "success" ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-300 w-full text-center font-bold" :
               event.source === "me"
-                ? "bg-white border-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-100"
-                : "bg-indigo-50 border-indigo-100 text-indigo-900 dark:bg-indigo-900/20 dark:border-indigo-800 dark:text-indigo-100"
+                ? "bg-white/[0.06] border-white/10 text-zinc-200"
+                : "bg-indigo-500/10 border-indigo-500/20 text-indigo-200"
             }`}>
-              {event.type === "found" && <div className="text-xs font-bold mb-1 opacity-70">系统通知</div>}
+              {event.type === "found" && <div className="text-xs font-bold mb-1 text-zinc-500">系统通知</div>}
               {event.source !== "me" && event.type === "negotiate" && (
-                <div className="text-xs font-bold mb-1 opacity-70">
+                <div className="text-xs font-bold mb-1 text-zinc-500">
                    {events.find(e => e.type === "found" && e.message.includes(event.source))?.message.split(" ")[2] || "AI Node"}
                 </div>
               )}
