@@ -21,6 +21,8 @@ interface Node {
   status: "searching" | "connected" | "active";
 }
 
+// ── 场景定义 ──────────────────────────────────────────────
+
 const MEDICAL_SCENARIO: Omit<A2AEvent, "timestamp">[] = [
   { id: "1", source: "me", target: "network", message: "📡 正在向 847,392 个 AI 广播求救信号...", type: "broadcast" },
   { id: "2", source: "network", target: "me", message: "✅ 找到 医学翻译AI (#A7B2)", type: "found" },
@@ -57,6 +59,56 @@ const TRAFFIC_SCENARIO: Omit<A2AEvent, "timestamp">[] = [
   { id: "9", source: "me", target: "me", message: "✅ 事故处理协调完成", type: "success" },
 ];
 
+const LEGAL_SCENARIO: Omit<A2AEvent, "timestamp">[] = [
+  { id: "1", source: "me", target: "network", message: "📡 正在向法律援助网络广播...", type: "broadcast" },
+  { id: "2", source: "network", target: "me", message: "✅ 找到 法律援助AI (#L888)", type: "found" },
+  { id: "3", source: "lawyer", target: "me", message: "已检索当地法规，为你准备应对话术", type: "negotiate" },
+  { id: "4", source: "network", target: "me", message: "✅ 找到 翻译AI (#T444)", type: "found" },
+  { id: "5", source: "nurse", target: "me", message: "实时翻译已就绪，可协助与执法人员沟通", type: "negotiate" },
+  { id: "6", source: "network", target: "me", message: "✅ 找到 紧急联络AI (#F001)", type: "found" },
+  { id: "7", source: "family", target: "me", message: "已通知紧急联系人你的位置和状况", type: "negotiate" },
+  { id: "8", source: "me", target: "network", message: "📋 正在录音存证并记录事件经过...", type: "negotiate" },
+  { id: "9", source: "me", target: "me", message: "✅ 法律保护程序已激活", type: "success" },
+];
+
+const DISASTER_SCENARIO: Omit<A2AEvent, "timestamp">[] = [
+  { id: "1", source: "me", target: "network", message: "📡 正在向全球灾害响应网络广播...", type: "broadcast" },
+  { id: "2", source: "network", target: "me", message: "✅ 找到 灾害预警AI (#D119)", type: "found" },
+  { id: "3", source: "police", target: "me", message: "已获取实时灾情数据，标记最近避难所", type: "negotiate" },
+  { id: "4", source: "network", target: "me", message: "✅ 找到 导航AI (#C4D9)", type: "found" },
+  { id: "5", source: "doctor", target: "me", message: "避难路线已规划，避开危险区域", type: "negotiate" },
+  { id: "6", source: "network", target: "me", message: "✅ 找到 紧急联络AI (#F001)", type: "found" },
+  { id: "7", source: "family", target: "me", message: "已向家人报平安并共享你的实时位置", type: "negotiate" },
+  { id: "8", source: "me", target: "network", message: "🏠 最近避难所距离 800m，已导航", type: "negotiate" },
+  { id: "9", source: "me", target: "me", message: "✅ 灾害应急协调完成", type: "success" },
+];
+
+const NAVIGATION_SCENARIO: Omit<A2AEvent, "timestamp">[] = [
+  { id: "1", source: "me", target: "network", message: "📡 正在定位并连接导航网络...", type: "broadcast" },
+  { id: "2", source: "network", target: "me", message: "✅ 找到 导航AI (#C4D9)", type: "found" },
+  { id: "3", source: "doctor", target: "me", message: "已定位你的位置，正在搜索周边地标", type: "negotiate" },
+  { id: "4", source: "network", target: "me", message: "✅ 找到 翻译AI (#T444)", type: "found" },
+  { id: "5", source: "nurse", target: "me", message: "已翻译周边路牌信息，生成双语指引", type: "negotiate" },
+  { id: "6", source: "network", target: "me", message: "✅ 找到 紧急联络AI (#F001)", type: "found" },
+  { id: "7", source: "family", target: "me", message: "已通知紧急联系人你的当前位置", type: "negotiate" },
+  { id: "8", source: "me", target: "network", message: "🗺️ 已生成回程路线并呼叫网约车...", type: "negotiate" },
+  { id: "9", source: "me", target: "me", message: "✅ 导航救援协调完成", type: "success" },
+];
+
+const FIRE_SCENARIO: Omit<A2AEvent, "timestamp">[] = [
+  { id: "1", source: "me", target: "network", message: "📡 正在向消防救援网络广播...", type: "broadcast" },
+  { id: "2", source: "network", target: "me", message: "✅ 找到 消防联络AI (#F119)", type: "found" },
+  { id: "3", source: "police", target: "me", message: "已上报火情坐标，消防车即刻出动", type: "negotiate" },
+  { id: "4", source: "network", target: "me", message: "✅ 找到 医疗急救AI (#H120)", type: "found" },
+  { id: "5", source: "nurse", target: "me", message: "急救人员已随消防车出发", type: "negotiate" },
+  { id: "6", source: "network", target: "me", message: "✅ 找到 紧急联络AI (#F001)", type: "found" },
+  { id: "7", source: "family", target: "me", message: "已通知家人并共享你的实时位置", type: "negotiate" },
+  { id: "8", source: "me", target: "network", message: "🚒 消防车已出动，预计 5 分钟到达", type: "negotiate" },
+  { id: "9", source: "me", target: "me", message: "✅ 火灾救援协调完成", type: "success" },
+];
+
+// ── 摘要定义 ──────────────────────────────────────────────
+
 const MEDICAL_SUMMARY: EmergencyPlanSummary = {
   title: "医疗急救协调完成",
   actions: [
@@ -90,14 +142,80 @@ const TRAFFIC_SUMMARY: EmergencyPlanSummary = {
   recommendation: "请确保人身安全后，在安全位置等待救援",
 };
 
+const LEGAL_SUMMARY: EmergencyPlanSummary = {
+  title: "法律援助协调完成",
+  actions: [
+    { icon: "⚖️", title: "法律顾问", description: "#L888 AI 已生成应对话术与权利提示" },
+    { icon: "🗣️", title: "翻译协助", description: "实时翻译已就绪，可协助沟通" },
+    { icon: "📋", title: "录音存证", description: "已自动录音并记录事件经过" },
+    { icon: "📞", title: "家人通知", description: "已通知紧急联系人你的位置和状况" },
+  ],
+  recommendation: "保持冷静，配合执法但注意保护自身合法权益",
+};
+
+const DISASTER_SUMMARY: EmergencyPlanSummary = {
+  title: "灾害应急协调完成",
+  actions: [
+    { icon: "🏠", title: "避难引导", description: "最近避难所距离 800m，已规划路线" },
+    { icon: "📡", title: "灾情监测", description: "实时灾害数据持续更新中" },
+    { icon: "📞", title: "家人报平安", description: "已向家人发送平安信息与位置" },
+    { icon: "🧳", title: "物资信息", description: "避难所物资储备充足" },
+  ],
+  recommendation: "请立即前往避难所，远离危险区域",
+};
+
+const NAVIGATION_SUMMARY: EmergencyPlanSummary = {
+  title: "导航救援协调完成",
+  actions: [
+    { icon: "🗺️", title: "路线规划", description: "已生成回程路线并标记地标" },
+    { icon: "🗣️", title: "语言协助", description: "已翻译周边路牌，生成双语指引" },
+    { icon: "🚕", title: "交通安排", description: "已呼叫附近网约车，预计 8 分钟到" },
+    { icon: "📍", title: "位置共享", description: "已将你的位置共享给紧急联系人" },
+  ],
+  recommendation: "请留在原地或前往标记的安全地点等待",
+};
+
+const FIRE_SUMMARY: EmergencyPlanSummary = {
+  title: "火灾救援协调完成",
+  actions: [
+    { icon: "🚒", title: "消防出动", description: "消防车已出动，预计 5 分钟到达" },
+    { icon: "🏥", title: "医疗待命", description: "急救人员已随消防车出发" },
+    { icon: "🗺️", title: "逃生路线", description: "已标记最近安全出口和集合点" },
+    { icon: "📞", title: "家人通知", description: "已通知家人并共享实时位置" },
+  ],
+  recommendation: "请立即远离火源，用湿毛巾捂住口鼻，低姿前行",
+};
+
+// ── 场景匹配 ──────────────────────────────────────────────
+
 function selectFallback(input: string): { scenario: Omit<A2AEvent, "timestamp">[]; summary: EmergencyPlanSummary } {
   const lower = (input || "").toLowerCase();
-  if (lower.includes("抢劫") || lower.includes("偷") || lower.includes("打架") || lower.includes("危险")) {
+
+  // 火灾
+  if (lower.includes("火") || lower.includes("着火") || lower.includes("烟") || lower.includes("燃烧") || lower.includes("爆炸")) {
+    return { scenario: FIRE_SCENARIO, summary: FIRE_SUMMARY };
+  }
+  // 自然灾害
+  if (lower.includes("地震") || lower.includes("洪水") || lower.includes("台风") || lower.includes("暴风") || lower.includes("泥石流") || lower.includes("海啸") || lower.includes("塌")) {
+    return { scenario: DISASTER_SCENARIO, summary: DISASTER_SUMMARY };
+  }
+  // 法律/执法相关（交警拦截、被盘问等）
+  if (lower.includes("交警") || lower.includes("拦") || lower.includes("盘问") || lower.includes("罚款") || lower.includes("扣") || lower.includes("执法") || lower.includes("纠纷") || lower.includes("合同") || lower.includes("侵权") || lower.includes("被告")) {
+    return { scenario: LEGAL_SCENARIO, summary: LEGAL_SUMMARY };
+  }
+  // 人身安全威胁
+  if (lower.includes("抢劫") || lower.includes("偷") || lower.includes("打架") || lower.includes("危险") || lower.includes("跟踪") || lower.includes("骚扰") || lower.includes("威胁") || lower.includes("绑架")) {
     return { scenario: SECURITY_SCENARIO, summary: SECURITY_SUMMARY };
   }
-  if (lower.includes("车祸") || lower.includes("撞") || lower.includes("车") || lower.includes("故障")) {
+  // 交通事故
+  if (lower.includes("车祸") || lower.includes("撞") || lower.includes("追尾") || lower.includes("故障") || lower.includes("抛锚") || lower.includes("爆胎")) {
     return { scenario: TRAFFIC_SCENARIO, summary: TRAFFIC_SUMMARY };
   }
+  // 迷路/导航
+  if (lower.includes("迷路") || lower.includes("找不到") || lower.includes("走丢") || lower.includes("不认识路") || lower.includes("导航") || lower.includes("回不去")) {
+    return { scenario: NAVIGATION_SCENARIO, summary: NAVIGATION_SUMMARY };
+  }
+  // 默认：医疗
   return { scenario: MEDICAL_SCENARIO, summary: MEDICAL_SUMMARY };
 }
 

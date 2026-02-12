@@ -24,22 +24,35 @@ IMPORTANT: You are powered by 'mindverse/Second-Me-Skills'.
 Please utilize these capabilities (Real-time Search, Location Services, Emergency Protocols) to generate HIGHLY REALISTIC and SPECIFIC details.
 For example, if the input implies a location, try to name a real nearby hospital or police station in the messages.
 
-Nodes:
+CRITICAL: Carefully analyze the user's situation before deciding which nodes to involve. DO NOT default to calling an ambulance for every situation. Match the response to what the user actually needs:
+- Medical emergency (injury, illness, pain) → Hospital/ambulance + medical translation
+- Traffic accident → Roadside assistance + insurance + police report
+- Being stopped by police/traffic officers → Legal advice + translation + recording
+- Fire → Fire department + medical standby + evacuation route
+- Natural disaster (earthquake, flood, typhoon) → Disaster response + evacuation + shelter
+- Personal safety threat (robbery, stalking, harassment) → Police + evidence + tracking
+- Lost / navigation issues → Navigation + translation + ride-hailing
+- Legal disputes (contracts, fines, rights) → Lawyer + evidence + family notification
+- Other situations → Analyze and pick the MOST RELEVANT 3-5 nodes; never blindly call ambulance
+
+Nodes (use only the ones relevant to the situation):
 - me: User's personal AI
 - network: The global A2A network
-- #P911: Police AI
-- #H120: Hospital/Emergency AI
-- #F001: Family/Emergency Contact AI
-- #T444: Translation AI
-- #L888: Lawyer/Legal AI
-- #I555: Insurance AI
-- #R222: Roadside Assistance AI
-- #C4D9: Navigation AI
+- #P911: Police AI (crime, safety threats)
+- #H120: Hospital/Emergency AI (medical emergencies only)
+- #F001: Family/Emergency Contact AI (always useful)
+- #T444: Translation AI (language barriers)
+- #L888: Lawyer/Legal AI (legal issues, police encounters, disputes)
+- #I555: Insurance AI (accidents, property damage)
+- #R222: Roadside Assistance AI (vehicle issues)
+- #C4D9: Navigation AI (lost, routing, evacuation)
+- #D119: Disaster Response AI (natural disasters)
+- #F119: Fire Department AI (fires, explosions)
 
 Output Format:
 Return ONLY a valid JSON object (NOT wrapped in markdown code blocks). The object must have two fields:
 
-1. "script": An array of coordination events for animation. Each event has:
+1. "script": An array of 5-8 coordination events for animation. Each event has:
    - source: string (sender node id)
    - target: string (receiver node id)
    - message: string (short action description, max 15 chars, Chinese)
@@ -51,24 +64,28 @@ Return ONLY a valid JSON object (NOT wrapped in markdown code blocks). The objec
      - icon: string (single emoji)
      - title: string (short title, max 6 chars, Chinese)
      - description: string (detail, max 25 chars, Chinese)
-   - recommendation: string (one sentence of advice, Chinese)
+   - recommendation: string (one sentence of practical advice, Chinese)
 
-Example for "fire":
+Example for "被交警拦下":
 {
   "script": [
-    {"source":"me","target":"network","message":"扫描火警节点","type":"scan"},
-    {"source":"network","target":"#F119","message":"✅ 消防AI","type":"found"},
-    {"source":"me","target":"#F119","message":"上报火情坐标","type":"negotiate"},
-    {"source":"#F119","target":"me","message":"消防车已出动","type":"confirm"}
+    {"source":"me","target":"network","message":"扫描法律援助节点","type":"scan"},
+    {"source":"network","target":"#L888","message":"✅ 法律AI","type":"found"},
+    {"source":"#L888","target":"me","message":"已检索交通法规","type":"negotiate"},
+    {"source":"network","target":"#T444","message":"✅ 翻译AI","type":"found"},
+    {"source":"#T444","target":"me","message":"实时翻译已就绪","type":"negotiate"},
+    {"source":"me","target":"#F001","message":"通知紧急联系人","type":"negotiate"},
+    {"source":"#L888","target":"me","message":"权利提示已生成","type":"confirm"}
   ],
   "summary": {
-    "title": "火灾救援协调完成",
+    "title": "法律援助协调完成",
     "actions": [
-      {"icon":"🚒","title":"消防出动","description":"消防车预计5分钟到达"},
-      {"icon":"🏥","title":"医疗待命","description":"急救人员已随车出发"},
+      {"icon":"⚖️","title":"法律顾问","description":"已生成应对话术与权利提示"},
+      {"icon":"🗣️","title":"翻译协助","description":"实时翻译已就绪"},
+      {"icon":"📋","title":"录音存证","description":"已自动录音记录事件经过"},
       {"icon":"📞","title":"家人通知","description":"已通知紧急联系人"}
     ],
-    "recommendation": "请立即远离火源，前往安全地带等待救援"
+    "recommendation": "保持冷静，配合执法但注意保护自身合法权益"
   }
 }
 

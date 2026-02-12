@@ -123,8 +123,8 @@ export default function Dashboard() {
                   >
                     立即启动救援
                   </button>
-                  <div className="flex gap-2 justify-center">
-                    {["肚子痛", "车祸", "迷路"].map(tag => (
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {["肚子痛", "车祸", "迷路", "被交警拦", "着火了", "地震", "被跟踪", "纠纷"].map(tag => (
                       <button
                         key={tag}
                         onClick={() => setEmergencyInput(tag)}
